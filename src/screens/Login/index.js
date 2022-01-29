@@ -1,39 +1,63 @@
-import React from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth, logInWithEmailAndPassword } from "../../firebase";
 import "./index.css";
 
-const handleSubmit = (e) => {
+const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [user, loading, error] = useAuthState(auth);
+
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
     e.preventDefault();
     // lấy value của các element trong một form
     const { username, password } = e.target;
 
     console.log(username.value);
     // onSubmit({ username: username.value, password: password.value });
-};
+  };
 
-const Login = () => {
-    return (
-        <div className="container">
-            <h1>Plc Project</h1>
-            <form onSubmit={handleSubmit} className="form">
-                <div className="text-field">
-                    <label htmlFor="username" className="field-label">
-                        Email
-                    </label>
-                    <input id="username" type="text" />
-                </div>
-                <div className="text-field">
-                    <label htmlFor="password" className="field-label">
-                        Mật khẩu
-                    </label>
-                    <input id="password" type="password" />
-                </div>
+  useEffect(() => {
+    if (loading) {
+      // maybe trigger a loading screen
+      return;
+    }
+    if (user) navigate("/home");
+  }, [user, loading]);
 
-                <button type="submit" className="button">
-                    submit
-                </button>
-            </form>
+  return (
+    <div className="login">
+      <div className="login__container">
+        <input
+          type="text"
+          className="login__textBox"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="E-mail Address"
+        />
+        <input
+          type="password"
+          className="login__textBox"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+        />
+        <button
+          className="login__btn"
+          onClick={() => logInWithEmailAndPassword(email, password)}
+        >
+          Login
+        </button>
+        <div>
+          Don't have an account? <Link to="/register">Register</Link> now.
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default Login;

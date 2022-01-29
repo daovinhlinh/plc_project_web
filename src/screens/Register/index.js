@@ -1,39 +1,67 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  auth,
+  registerWithEmailAndPassword,
+  signInWithGoogle,
+} from "../../firebase";
 import "./index.css";
+function Register() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [user, loading, error] = useAuthState(auth);
+  const navigate = useNavigate();
 
-const handleSubmit = (e) => {
-    e.preventDefault();
-    // lấy value của các element trong một form
-    const { username, password } = e.target;
+  const register = () => {
+    if (!name) alert("Please enter name");
+    registerWithEmailAndPassword(name, email, password);
+  };
 
-    console.log(username.value);
-    // onSubmit({ username: username.value, password: password.value });
-};
+  useEffect(() => {
+    if (loading) return;
+    if (user) navigate("/dashboard");
+  }, [user, loading]);
 
-const Register = () => {
-    return (
-        <div className="container">
-            <h1>Plc Project</h1>
-            <form onSubmit={handleSubmit} className="form">
-                <div className="text-field">
-                    <label htmlFor="username" className="field-label">
-                        Email
-                    </label>
-                    <input id="username" type="text" />
-                </div>
-                <div className="text-field">
-                    <label htmlFor="password" className="field-label">
-                        Mật khẩu
-                    </label>
-                    <input id="password" type="password" />
-                </div>
-
-                <button type="submit" className="button">
-                    submit
-                </button>
-            </form>
+  return (
+    <div className="register">
+      <div className="register__container">
+        <input
+          type="text"
+          className="register__textBox"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Full Name"
+        />
+        <input
+          type="text"
+          className="register__textBox"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="E-mail Address"
+        />
+        <input
+          type="password"
+          className="register__textBox"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+        />
+        <button className="register__btn" onClick={register}>
+          Register
+        </button>
+        <button
+          className="register__btn register__google"
+          onClick={signInWithGoogle}
+        >
+          Register with Google
+        </button>
+        <div>
+          Already have an account? <Link to="/">Login</Link> now.
         </div>
-    );
-};
-
+      </div>
+    </div>
+  );
+}
 export default Register;

@@ -7,16 +7,17 @@ import Register from "./screens/Register";
 import { PrivateRoute } from "./commons/PrivateRoute";
 
 function App() {
-    return (
-        <div className="App">
-            <Routes>
-                <Route element={<PrivateRoute />}>
-                    <Route path="*" element={<Homepage />} />
-                </Route>
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-            </Routes>
-            {/* <header className="App-header">
+  return (
+    <div className="App">
+      <Routes>
+        {/* <Route element={<PrivateRoute />}>
+          <Route path="*" element={<Homepage />} />
+        </Route> */}
+        <Route exact path="/" element={<Login />} />
+        <Route exact path="/register" element={<Register />} />
+        <Route exact path="/home" element={<Homepage />} />
+      </Routes>
+      {/* <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
                 <p>
                     Edit <code>src/App.js</code> and save to reload.
@@ -30,8 +31,8 @@ function App() {
                     Learn React
                 </a>
             </header> */}
-        </div>
-    );
+    </div>
+  );
 }
 
 export default App;
