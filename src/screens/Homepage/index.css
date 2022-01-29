@@ -1,71 +1,111 @@
 .logout_btn {
-  padding: 7px;
-  font-size: 16px;
-  border: none;
-  color: white;
-  background-color: red;
-  margin-left: 20px;
+    padding: 7px;
+    font-size: 16px;
+    border: none;
+    color: white;
+    background-color: red;
+    margin-left: 20px;
 }
 
 .logout_btn:hover {
-  background-color: rgba(255, 0, 0, 0.6);
+    background-color: rgba(255, 0, 0, 0.6);
 }
 
 .start_btn {
-  padding: 20px;
-  font-size: 18px;
-  border: none;
-  color: white;
-  background-color: #eb5757;
-  border-radius: 15px;
-  margin-right: 20px;
-  text-align: center;
+    padding: 20px;
+    font-size: 18px;
+    border: none;
+    color: white;
+    background-color: #eb5757;
+    border-radius: 15px;
+    margin-right: 20px;
+    text-align: center;
 }
 
 .stop_btn {
-  padding: 20px;
-  font-size: 18px;
-  border: none;
-  color: white;
-  background-color: #3bb143;
-  border-radius: 15 px;
-  text-align: center;
+    padding: 20px;
+    font-size: 18px;
+    border: none;
+    color: white;
+    background-color: #3bb143;
+    border-radius: 15px;
+    text-align: center;
 }
 
 .action_btn {
-  margin-top: 20px;
+    margin-top: 40px;
+    margin-bottom: 50px;
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    width: 100vw;
 }
 
-.homepage__info {
-  display: flex;
-  align-items: center;
+.app_bar {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+    height: 15%;
+}
+
+.tab_list {
+    padding-left: 20px;
+    display: flex;
+    width: 35%;
+    justify-content: space-between;
 }
 
 .homepage__name {
-  font-size: 20px;
+    font-size: 20px;
+    display: inline-block;
+}
+
+.homepage__info {
+    display: flex;
+    align-items: center;
+    padding-right: 20px;
+}
+
+.tab__btn:hover {
+    cursor: pointer;
+}
+
+.active_tab {
+    text-decoration: underline;
+    text-underline-offset: 10px;
+}
+
+.sensor_control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
 }
 
 table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
 }
 
 td {
-  border: 1px solid #dddddd;
-  text-align: center;
-  width: 200px;
-  height: 150px;
+    border: 1px solid #dddddd;
+    text-align: center;
+    width: 200px;
+    height: 150px;
+    font-size: 30px;
 }
 
 th {
-  border: 1px solid #dddddd;
-  text-align: center;
-  padding: 10px;
-  background-color: #acacac;
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 10px;
+    background-color: #acacac;
+    font-size: 20px;
 }
