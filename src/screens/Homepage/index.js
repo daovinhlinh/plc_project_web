@@ -291,7 +291,7 @@ const Homepage = () => {
         // if (loading) return;
         // console.log(user);
         if (!user) return navigate("/");
-        // if (user == null) {
+
         fetchUserName();
         // }
 
